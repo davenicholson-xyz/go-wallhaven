@@ -42,10 +42,24 @@ func (wh *WallhavenAPI) Sort(sort SortingType) {
 	wh.urlbuilder.SetString("sorting", string(sort))
 }
 
+// Sort sets the sorting method for search results inline.
+// Accepts a SortingType value such as Date, Random, Views, Favorites, etc.
+func (q *Query) Sort(sort SortingType) *Query {
+	q.URLBuilder.SetString("sorting", string(sort))
+	return q
+}
+
 // Order sets the sort order for search results.
 // Accepts an OrderType value (typically Ascending or Descending).
 func (wh *WallhavenAPI) Order(order OrderType) {
 	wh.urlbuilder.SetString("order", string(order))
+}
+
+// Order sets the sort order for search results inline.
+// Accepts an OrderType value (typically Ascending or Descending).
+func (q *Query) Order(order OrderType) *Query {
+	q.URLBuilder.SetString("order", string(order))
+	return q
 }
 
 // Range sets the time range for "top" sorting.
