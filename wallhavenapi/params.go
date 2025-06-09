@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-// ApiKey sets the API key for authenticated requests to the Wallhaven API.
+// APIKey sets the API key for authenticated requests to the Wallhaven API.
 // The API key is required for accessing NSFW content and user-specific data.
-func (wh *WallhavenAPI) ApiKey(apikey string) {
+func (wh *WallhavenAPI) APIKey(apikey string) {
 	wh.urlbuilder.SetString("apikey", apikey)
 }
 

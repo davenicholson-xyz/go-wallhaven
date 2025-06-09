@@ -12,7 +12,7 @@
 //
 // With API key for authenticated requests:
 //
-//	client := wallhavenapi.NewWithApiKey("your-api-key")
+//	client := wallhavenapi.NewWithAPIKey("your-api-key")
 //	settings, err := client.UserSettings()
 package wallhavenapi
 
@@ -41,7 +41,7 @@ func New() *WallhavenAPI {
 // The apikey parameter should be your personal Wallhaven API key obtained from your account settings.
 // This client can access all endpoints including NSFW content and user-specific data.
 // Returns a configured WallhavenAPI instance ready for authenticated requests.
-func NewWithApiKey(apikey string) *WallhavenAPI {
+func NewWithAPIKey(apikey string) *WallhavenAPI {
 	urlbuilder := fetch.NewURL("https://wallhaven.cc/api/v1")
 	urlbuilder.SetString("apikey", apikey)
 	return &WallhavenAPI{
