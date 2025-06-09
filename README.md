@@ -2,16 +2,6 @@
 
 A comprehensive Go wrapper for the [Wallhaven.cc](https://wallhaven.cc) API that provides easy access to wallpapers, user collections, and search functionality.
 
-## Features
-
-- 🔍 **Search wallpapers** with advanced filtering options
-- 📸 **Retrieve individual wallpapers** by ID
-- 🏆 **Access top-rated and trending** wallpapers
-- 👤 **User collections and settings** (with API key)
-- 🎨 **Advanced filtering** by category, purity, resolution, colors, and more
-- 📄 **Pagination support** for large result sets
-- 🔐 **Authentication support** for NSFW content and user data
-
 ## Installation
 
 ```bash
@@ -209,10 +199,13 @@ client.Order(wapi.Descending) // High to low
 client.Order(wapi.Ascending)  // Low to high
 
 // Time range for toplist
-client.Range(wapi.OneDay)     // Past day
-client.Range(wapi.OneWeek)    // Past week
-client.Range(wapi.OneMonth)   // Past month
-client.Range(wapi.OneYear)    // Past year
+client.Range(wapi.OneDay)        // Past day
+client.Range(wapi.ThreeDays)     // Past three days
+client.Range(wapi.OneWeek)       // Past week
+client.Range(wapi.OneMonth)      // Past month
+client.Range(wapi.ThreeMonths)   // Past three month
+client.Range(wapi.SixMonths)     // Past six month
+client.Range(wapi.OneYear)       // Past year
 ```
 
 ### Pagination
@@ -302,70 +295,6 @@ if err != nil {
 fmt.Printf("Tag: %s (Category: %s)\n", tag.Name, tag.Category)
 ```
 
-## Data Structures
-
-### Wallpaper
-```go
-type Wallpaper struct {
-    ID         string
-    URL        string
-    ShortURL   string
-    Views      int
-    Favorites  int
-    Category   string
-    Purity     string
-    Resolution string
-    Ratio      string
-    FileSize   int
-    FileType   string
-    CreatedAt  string
-    Colors     []string
-    Path       string
-    Tags       []Tag
-    // ... and more fields
-}
-```
-
-### SearchQueryData
-```go
-type SearchQueryData struct {
-    Wallpapers []Wallpaper
-    Meta       struct {
-        CurrentPage int
-        LastPage    int
-        Total       int
-        PerPage     int
-        Query       string
-        Seed        string
-    }
-}
-```
-
-## Error Handling
-
-The API wrapper returns standard Go errors. Common error scenarios:
-
-```go
-results, err := client.Search("test").Get()
-if err != nil {
-    // Handle different error types
-    switch {
-    case strings.Contains(err.Error(), "404"):
-        fmt.Println("Not found")
-    case strings.Contains(err.Error(), "401"):
-        fmt.Println("Unauthorized - check your API key")
-    default:
-        log.Printf("API error: %v", err)
-    }
-}
-```
-
-## Getting an API Key
-
-1. Create an account on [Wallhaven.cc](https://wallhaven.cc)
-2. Go to your [account settings](https://wallhaven.cc/settings/account)
-3. Generate an API key
-4. Use the key with `NewWithAPIKey()` or `APIKey()` method
 
 ## Rate Limiting
 
@@ -409,9 +338,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License 
 
 ## Acknowledgments
 
 - [Wallhaven.cc](https://wallhaven.cc) for providing the API
-- The Go community for excellent HTTP and JSON handling libraries
