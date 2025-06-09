@@ -319,7 +319,6 @@ results, err := client.Search("gaming").
 results, err := client.Search("").
     Categories(wapi.Anime).
     Sort(wapi.Random).
-    Seed("my-seed-123").
     Get()
 ```
 
