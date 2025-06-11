@@ -78,6 +78,12 @@ func (q *Query) Get() (SearchQueryData, error) {
 	return runQuery(cloned)
 }
 
+// Raw returns the query string to be run (excluding page numbers)
+func (q *Query) Raw() string {
+	cloned := q.URLBuilder.Clone()
+	return cloned.Build()
+}
+
 // runQuery executes the HTTP request to the Wallhaven API and parses the JSON response.
 // This is an internal helper function used by Page and Get methods.
 // Returns SearchQueryData with the parsed response or an error if the request or parsing fails.
