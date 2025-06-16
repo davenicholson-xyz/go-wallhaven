@@ -68,3 +68,11 @@ func (wh *WallhavenAPI) Collections(username string) ([]Collection, error) {
 
 	return collectionsQuery.Data, nil
 }
+
+// Collection creates a new query for returning wallpapers from a collection.
+// Use the returned Query's methods to fetch the first page via Get() or Page(x)
+func (wh *WallhavenAPI) Collection(username string, id int) *Query {
+	urlBuilder := wh.urlbuilder.Clone()
+	urlBuilder.Append(fmt.Sprintf("/collections/%s/%d", username, id))
+	return &Query{urlBuilder}
+}
